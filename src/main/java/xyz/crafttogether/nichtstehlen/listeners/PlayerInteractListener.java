@@ -12,14 +12,16 @@ import java.util.UUID;
 public class PlayerInteractListener implements Listener {
     @EventHandler
     public void onPlayerInteraction(PlayerInteractEvent event) {
+        if (event.getClickedBlock() == null) return;
         if (!event.getClickedBlock().getType().equals(Material.CHEST)) return;
         UUID chestOwner = ChestOwnershipHandler.getChestOwnership(event.getClickedBlock());
-        System.out.println(chestOwner);
-        if (!event.getPlayer().getUniqueId().equals(chestOwner)) {
-            event.getPlayer().sendMessage(ChatColor.RED + "You failed to unlock the chest, you do not own it");
-            event.setCancelled(true);
-        } else {
-            event.getPlayer().sendMessage(ChatColor.GREEN + "You have unlocked your chest");
+        if (event.getAction().isRightClick()) {
+            if (!event.getPlayer().getUniqueId().equals(chestOwner)) {
+                event.getPlayer().sendMessage(ChatColor.RED + "You failed to unlock the chest, you do not own it");
+                event.setCancelled(true);
+            } else {
+                event.getPlayer().sendMessage(ChatColor.GREEN + "You have unlocked your chest");
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.crafttogether.nichtstehlen.configuration.ChestOwnershipHandler;
 import xyz.crafttogether.nichtstehlen.configuration.ConfigHandler;
+import xyz.crafttogether.nichtstehlen.listeners.BlockBreakEvent;
 import xyz.crafttogether.nichtstehlen.listeners.BlockPlaceListener;
 import xyz.crafttogether.nichtstehlen.listeners.PlayerInteractListener;
 
@@ -28,6 +29,7 @@ public class NichtStehlen extends JavaPlugin {
         final PluginManager manager = getServer().getPluginManager();
         manager.registerEvents(new PlayerInteractListener(), this);
         manager.registerEvents(new BlockPlaceListener(), this);
+        manager.registerEvents(new BlockBreakEvent(), this);
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "NichtStehlen enabled");
     }
 
