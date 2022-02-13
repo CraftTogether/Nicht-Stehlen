@@ -39,7 +39,9 @@ public class ConfigHandler {
             InputStream defaultConfig = NichtStehlen.class.getResourceAsStream("/config.yml");
             assert defaultConfig != null;
             try {
-                Files.copy(defaultConfig, file.toPath());
+                if (file.delete()) {
+                    Files.copy(defaultConfig, file.toPath());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
