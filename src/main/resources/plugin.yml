@@ -1,0 +1,4 @@
+name: NichtStehlen
+version: '${project.version}'
+main: xyz.crafttogether.nichtstehlen.NichtStehlen
+api-version: 1.18
