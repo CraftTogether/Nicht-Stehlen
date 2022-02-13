@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.crafttogether.nichtstehlen.NichtStehlen;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,8 +37,11 @@ public class ChestOwnershipHandler {
         claims = YamlConfiguration.loadConfiguration(file);
     }
 
+    @Nullable
     public static UUID getChestOwnership(Block block) {
-        return UUID.fromString(claims.getString(String.format("%s.%s,%s,%s", block.getWorld().getName(), block.getX(), block.getY(), block.getZ())));
+        String user = claims.getString(String.format("%s.%s,%s,%s", block.getWorld().getName(), block.getX(), block.getY(), block.getZ()));
+        if (user == null) return null;
+        return UUID.fromString(user);
     }
 
     public static void addChestOwnership(Block block, UUID uuid) {
