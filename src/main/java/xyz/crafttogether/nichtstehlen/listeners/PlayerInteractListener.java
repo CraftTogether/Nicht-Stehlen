@@ -14,8 +14,9 @@ public class PlayerInteractListener implements Listener {
     public void onPlayerInteraction(PlayerInteractEvent event) {
         if (!event.getClickedBlock().getType().equals(Material.CHEST)) return;
         UUID chestOwner = ChestOwnershipHandler.getChestOwnership(event.getClickedBlock());
-        if (event.getPlayer().getUniqueId() != chestOwner) {
-            event.getPlayer().sendMessage(ChatColor.GREEN + "You failed to unlock the chest, you do not own it");
+        System.out.println(chestOwner);
+        if (!event.getPlayer().getUniqueId().equals(chestOwner)) {
+            event.getPlayer().sendMessage(ChatColor.RED + "You failed to unlock the chest, you do not own it");
             event.setCancelled(true);
         } else {
             event.getPlayer().sendMessage(ChatColor.GREEN + "You have unlocked your chest");
