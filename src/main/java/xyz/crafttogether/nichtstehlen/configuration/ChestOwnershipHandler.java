@@ -1,7 +1,5 @@
 package xyz.crafttogether.nichtstehlen.configuration;
 
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,7 +10,6 @@ import xyz.crafttogether.nichtstehlen.NichtStehlen;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.UUID;
 
 public class ChestOwnershipHandler {
